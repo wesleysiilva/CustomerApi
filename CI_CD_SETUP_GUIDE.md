@@ -77,13 +77,24 @@ az acr create --resource-group customerapi-rg --name customerapiregistry --sku B
 az ad sp create-for-rbac --name "github-actions" --role Contributor --scopes /subscriptions/{subscription-id}/resourceGroups/customerapi-rg
 ```
 
-This command outputs JSON with:
-- `clientId`
-- `clientSecret`
-- `subscriptionId`
-- `tenantId`
+This command outputs JSON with fields like:
+- `appId` (maps to `clientId`)
+- `password` (maps to `clientSecret`)
+- `tenant` (maps to `tenantId`)
 
-**Paste the entire JSON output as the `AZURE_CREDENTIALS` secret value.**
+Before pasting as the `AZURE_CREDENTIALS` secret, transform the JSON by renaming:
+```json
+{
+  "clientId": "<appId>",
+  "clientSecret": "<password>",
+  "subscriptionId": "<subscription-id>",
+  "tenantId": "<tenant>"
+}
+```
+
+Replace `<subscription-id>` with your actual subscription ID from the command output or get it with: `az account show --query id -o tsv`
+
+**Paste the transformed JSON as the `AZURE_CREDENTIALS` secret value.**
 
 ### 2d. Create Container Apps Environment
 

@@ -88,10 +88,9 @@ jobs:
     - name: Deploy to Azure Container Apps
       uses: azure/container-apps-deploy-action@v1
       with:
-        appSourceUrl: ${{ secrets.DOCKER_USERNAME }}/customerapi:${{ github.sha }}
-        acrUsername: ${{ secrets.DOCKER_USERNAME }}
-        acrPassword: ${{ secrets.DOCKER_PASSWORD }}
-        azureCredentials: ${{ secrets.AZURE_CREDENTIALS }}
+        imageToDeploy: ${{ secrets.DOCKER_USERNAME }}/customerapi:${{ github.sha }}
+        registryUrl: docker.io
+        registryUsername: ${{ secrets.DOCKER_USERNAME }}
+        registryPassword: ${{ secrets.DOCKER_PASSWORD }}
         containerAppName: customerapi
         resourceGroup: ${{ secrets.AZURE_RESOURCE_GROUP }}
-        imageToBuild: ${{ secrets.DOCKER_USERNAME }}/customerapi:${{ github.sha }}
