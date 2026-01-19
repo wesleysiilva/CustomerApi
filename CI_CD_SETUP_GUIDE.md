@@ -88,23 +88,13 @@ This command outputs JSON with:
 ### 2d. Create Container Apps Environment
 
 ```bash
-az containerapp env create \
-  --name customerapi-env \
-  --resource-group customerapi-rg \
-  --location eastus
+az containerapp env create  --name customerapi-env --resource-group customerapi-rg --location eastus 
 ```
 
 ### 2e. Create Container App
 
 ```bash
-az containerapp create \
-  --name customerapi \
-  --resource-group customerapi-rg \
-  --environment customerapi-env \
-  --image mcr.microsoft.com/azuredocs/containerapps-helloworld:latest \
-  --target-port 80 \
-  --ingress 'external' \
-  --query properties.configuration.ingress.fqdn
+az containerapp create --name customerapi --resource-group customerapi-rg --environment customerapi-env --image mcr.microsoft.com/azuredocs/containerapps-helloworld:latest --target-port 80 --ingress 'external' --query properties.configuration.ingress.fqdn
 ```
 
 ---
