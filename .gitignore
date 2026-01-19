@@ -1,0 +1,45 @@
+# Visual Studio / .NET
+.vs/
+.vscode/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build artifacts
+bin/
+obj/
+out/
+publish/
+**/bin/
+**/obj/
+
+# NuGet
+*.nupkg
+packages/
+.nuget/
+
+# Rider
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# SQLite DB files
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+
+# User secrets
+secrets.json
+appsettings.*.Local.json
+
+# Resharper
+_ReSharper*/
+*._ReSharper*/
+_ReSharper.caches
