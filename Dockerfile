@@ -3,21 +3,21 @@ FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 WORKDIR /src
 
 # Copy project files
-COPY ["src/CustomerApi/CustomerApi.csproj", "src/CustomerApi/"]
+COPY ["src/CustomerApi.csproj", "src/"]
 COPY ["src/Directory.Build.props", "src/"]
 
 # Restore dependencies
-RUN dotnet restore "src/CustomerApi/CustomerApi.csproj"
+RUN dotnet restore "src/CustomerApi.csproj"
 
 # Copy source code
 COPY . .
 
 # Build application
-RUN dotnet build "src/CustomerApi/CustomerApi.csproj" -c Release -o /app/build
+RUN dotnet build "src/CustomerApi.csproj" -c Release -o /app/build
 
 # Publish stage
 FROM build AS publish
-RUN dotnet publish "src/CustomerApi/CustomerApi.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "src/CustomerApi.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 # Runtime stage
 FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS runtime
